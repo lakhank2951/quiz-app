@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-header">
+        <strong class="pull-left">Q {{questionData.id}}: {{questionData.question}}</strong>
+        <strong class="text-danger pull-right">
+            <countdown #countdown [config]="{leftTime: 15, demand: false}" (event)="timesUp($event)">$!h!:$!m!:$!s!</countdown>
+        </strong>
+
+    </div>
+    <div class="card-body">
+        <div class="form-check mar-tb pl-0" *ngFor="let item of questionData.answer">
+            <input type="radio" [(ngModel)]="radioSelected" name="list_name" value="{{item.value}}" (change)="onItemChange(item)"/> 
+            <label class="form-check-label">
+                &nbsp; {{item.name}}
+            </label>
+        </div>
+        <hr>
+        <button class="btn btn-primary rounded pull-left" [disabled] = "isItemSelected" (click) = "nextQuestion()">Next</button>
+    </div>
+</div>
+
+
+<div class="modal fade" id="notifyModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="notifyModal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-body text-center">
+            <div *ngIf = "!isExamFinished">
+                <p>Your time is over for this question, please click on <strong>'Next'</strong> button</p>
+                <button class="text-center btn btn-primary"  data-dismiss="modal" aria-label="Close" (click)="closelistModal()">Next</button>
+                <!-- <button class="btn btn-primary rounded pull-left" *ngIf = "isExamFinished" (click) = "ExamFinished()">Next</button> -->
+            </div>
+            <div *ngIf = "isExamFinished">
+                <i class="fa fa-trophy font-6" style="color: #DAA520"></i>
+                <h1>Congratulation</h1>
+                <h1 class="text-success">Score: {{score}}</h1>
+
+                <button class="btn btn-danger mt-2 mb-2" (click) = "logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
