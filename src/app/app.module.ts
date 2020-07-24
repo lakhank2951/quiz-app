@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { TestComponent } from './test/test.component';
-import { FormatTimePipe } from './format-time.pipe';
 
 import { CountdownModule } from 'ngx-countdown';
 
@@ -17,8 +16,7 @@ import { CountdownModule } from 'ngx-countdown';
   declarations: [
     AppComponent,
     SignupComponent,
-    TestComponent,
-    FormatTimePipe
+    TestComponent
   ],
   imports: [
     BrowserModule,
